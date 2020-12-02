@@ -8,6 +8,7 @@ class SignupApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => SignupScreen(),
+        '/welcome': (context) => WelcomeScreen(),
       }
     );
   }
@@ -29,6 +30,19 @@ class SignupScreen extends StatelessWidget {
     );
   }
 }
+class WelcomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.green,
+      body: Center(
+        child: Text("Welcome !",style: Theme.of(context).textTheme.headline2),
+      ),
+    );
+  }
+}
+
+
 
 class SignupForm extends StatefulWidget {
   @override
@@ -83,7 +97,7 @@ class _SignupFormState extends State<SignupForm> {
                 return states.contains(MaterialState.disabled) ? null : Colors.blue;
               }),
             ),
-            onPressed: null,
+            onPressed: _showWelcomeScreen,
             child: Text("Sign up !"),
           ),
         ],
@@ -91,4 +105,8 @@ class _SignupFormState extends State<SignupForm> {
     );
   }
 
+
+  void _showWelcomeScreen() {
+    Navigator.of(context).pushNamed("/welcome");
+  }
 }
